@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eVote - Vice President Selection</title>
+    <link rel="stylesheet" href="vote.css">
+    <style>
+        /* Additional CSS for positioning the submit button */
+        #submit-button {
+            position: absolute; /* Position the button absolutely */
+            bottom: 20px; /* Distance from the bottom */
+            right: 20px; /* Distance from the right */
+            display: none; /* Initially hidden */
+        }
+        .main-content {
+            position: relative; /* Make the main-content relative to position the button inside it */
+            padding: 20px; /* Add some padding */
+        }
+    </style>
+    <script>
+        // Function to load candidates from localStorage and populate the voting form
+        function loadCandidates() {
+            const candidates = JSON.parse(localStorage.getItem('candidates')) || [];
+            const voteForm = document.getElementById('vote-form');
+
+            // Clear existing candidates in the form
+            voteForm.innerHTML = '';
+
+            // Create candidate options dynamically
+            candidates.forEach(({ logo, name }) => {
+                const candidateDiv = document.createElement('div');
+                candidateDiv.className = 'candidate';
+
+                const img = document.createElement('img');
+                img.src = logo;
+                img.alt = name;
+
+                const label = document.createElement('label');
+                const radioInput = document.createElement('input');
+                radioInput.type = 'radio';
+                radioInput.name = 'candidate';
+                radioInput.value = name;
+
+                // Add event listener to show submit button when a candidate is selected
+                radioInput.addEventListener('change', function () {
+                    document.getElementById('submit-button').style.display = 'block'; // Show submit button
+                });
+
+                label.appendChild(radioInput); // Add radio button to label
+                label.appendChild(document.createTextNode(name)); // Add candidate name
+
+                candidateDiv.appendChild(img); // Add image to candidate div
+                candidateDiv.appendChild(label); // Add label (with radio button and name) to candidate div
+                voteForm.appendChild(candidateDiv); // Add candidate div to the form
+            });
+        }
+
+        // Add event listener to the form
+        document.addEventListener("DOMContentLoaded", function () {
+            loadCandidates(); // Load candidates when the page is loaded
+
+            document.getElementById('submit-button').addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent default button action
+
+                // Get the selected candidate
+                const selectedCandidate = document.querySelector('input[name="candidate"]:checked');
+
+                // Check if a candidate is selected
+                if (selectedCandidate) {
+                    // Get the candidate's name
+                    const candidateName = selectedCandidate.value;
+
+                    // Retrieve existing votes from localStorage or initialize an empty object
+                    let votes = JSON.parse(localStorage.getItem('votes')) || {};
+
+                    // Increment the vote count for the selected candidate
+                    votes[candidateName] = (votes[candidateName] || 0) + 1;
+
+                    // Save updated votes to localStorage
+                    localStorage.setItem('votes', JSON.stringify(votes));
+
+                    // Hide the candidate list
+                    document.getElementById('vote-form').style.display = 'none';
+
+                    // Show a success message
+                    const voteMessage = document.createElement('p');
+                    voteMessage.textContent = 'Vote has been submitted successfully!';
+                    voteMessage.style.color = 'green';
+                    voteMessage.style.fontSize = '18px';
+                    document.querySelector('.main-content').appendChild(voteMessage);
+                } else {
+                    // Show an alert if no candidate is selected
+                    alert('Please select a candidate before continuing.');
+                }
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="logo.jpg" alt="eVote Logo" class="logo">
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html">My Profile</a></li>
+                <li><a href="#">Vote</a></li>
+                <li><a href="login.html">Logout</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <h1>Candidate List</h1>
+            <form id="vote-form">
+                <div class="candidate">
+                    <!-- Candidates will be loaded here -->
+                </div>
+            </form>
+            <button type="submit" id="submit-button" >Submit Vote</button> <!-- Positioned at bottom right -->
+        </div>
+    </div>
+</body>
+
+</html>

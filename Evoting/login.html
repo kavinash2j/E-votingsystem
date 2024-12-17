@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Voter Login</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Voter Login</h2>
+        <form id="loginForm">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="text" id="aadhar" placeholder="Aadhar Card Number" required>
+            <input type="text" id="userId" placeholder="User ID" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <div id="loginMessage" style="display:none;"></div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const enteredName = document.getElementById('name').value;
+            const enteredAadhar = document.getElementById('aadhar').value;
+            const enteredUserId = document.getElementById('userId').value;
+
+            // Retrieve voter data from localStorage
+            const voterData = JSON.parse(localStorage.getItem('voterData'));
+
+            if (voterData && voterData.userId === enteredUserId && voterData.name === enteredName && voterData.aadhar === enteredAadhar) {
+                if (!voterData.hasVoted) {
+                    document.getElementById('loginMessage').textContent = 'Login Successful! Redirecting to vote...';
+                    localStorage.setItem('voterData', JSON.stringify({ ...voterData, hasVoted: true })); // Mark as voted
+                    window.location.href = 'vote.html';
+                } else {
+                    document.getElementById('loginMessage').textContent = 'You have already voted.';
+                }
+            } else {
+                document.getElementById('loginMessage').textContent = 'Invalid credentials. Please try again.';
+            }
+
+            document.getElementById('loginMessage').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

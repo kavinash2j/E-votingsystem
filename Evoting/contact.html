@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+
+    <!-- Contact Section -->
+    <section id="contact-section">
+        <div class="contact-details">
+            <h2>Get in <span>Touch with us</span></h2>
+            <div class="details">
+                <p><strong>Sales and Support Office</strong><br>
+                    Vishwakarma Institute of Information Technology,<br>
+                     Pune<br>
+                    Maharashtra, India.<br>
+                    📞: <a href="tel:+918421395613">+91-8421395613</a>
+                </p>
+
+                <p><strong>For Sales</strong><br>
+                    Mr. Suraj Khaire<br>
+                    📞: <a href="tel:+917028748066">+91 7028748066</a><br>
+                    📧: <a href="mailto: surajkhaire0077@gmail.com">surajkhaire0077@gmail.com</a>
+                </p>
+
+                <p><strong>For Support</strong><br>
+                    📞: <a href="tel:+918669111822">+91 8669111822</a><br>
+                    📞: <a href="tel:+919356913400">+91 9356913400</a><br>
+                    📞: <a href="tel:+919579706970">+91 9579706970</a><br>
+                </p>
+
+                <!-- Embedded Google Map -->
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.6077801688087!2d72.83669381461666!3d19.01685598712559!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cedf78f2ea8b%3A0x9e38d72b8cf2ab0e!2sHarganga%20Mahal%2C%20Dr%20B.A.%20Road%2C%20Dadar%20TT%20Circle%2C%20Dadar%20East%2C%20Mumbai%2C%20Maharashtra%20400014!5e0!3m2!1sen!2sin!4v1600000000000!5m2!1sen!2sin"
+                        width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <form action="#">
+                <label for="name">Your name *</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="mobile">Mobile No. *</label>
+                <input type="tel" id="mobile" name="mobile" required>
+
+                <label for="company">Company Name *</label>
+                <input type="text" id="company" name="company" required>
+
+                <label for="company-type">Company Type *</label>
+                <select id="company-type" name="company-type" required>
+                    <option value="" disabled selected>Select Company Type</option>
+                    <option value="sales">Sales</option>
+                    <option value="support">Support</option>
+                </select>
+
+                <label for="inquiry">Inquiry Type *</label>
+                <div class="radio-group">
+                    <input type="radio" id="sales-inquiry" name="inquiry" value="sales" required>
+                    <label for="sales-inquiry">Sales Inquiry</label>
+                    <input type="radio" id="support-inquiry" name="inquiry" value="support">
+                    <label for="support-inquiry">Support Inquiry</label>
+                </div>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <!-- CAPTCHA and Submit Button -->
+                <div class="captcha">
+                    <input type="checkbox" required> I'm not a robot
+                </div>
+
+                <button type="submit">SUBMIT</button>
+            </form>
+        </div>
+    </section>
+
+</body>
+</html>

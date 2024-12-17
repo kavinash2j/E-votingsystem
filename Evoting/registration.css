@@ -1,0 +1,184 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f7fa;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    border: 2px solid #2c3e50; /* Darker border for contrast */
+    background: linear-gradient(135deg, #c7e7ec, #ffffff); /* Smooth gradient background */
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* Deeper shadow for better depth */
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for the container */
+.container:hover {
+    transform: scale(1.02); /* Slight scale effect on hover */
+    box-shadow: 0 12px 45px rgba(0, 0, 0, 0.25); /* Stronger shadow on hover */
+}
+
+ h2 {
+    color: #2c3e50;
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;  /* Large size for emphasis */
+    color: #135a3a;   /* Vibrant blue color */
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: glow 1.5s ease-in-out infinite alternate;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+ h2:hover {
+    color: #f81c08;  /* Changes color on hover */
+    transform: scale(1.1);  /* Slightly enlarges on hover */
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+}
+@keyframes glow {
+    from {
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5), 0 0 20px #3498db, 0 0 30px #3498db;
+    }
+    to {
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5), 0 0 20px #f39c12, 0 0 30px #f39c12;
+    }
+}
+
+
+
+input, select {
+    border: 1.5px solid orange;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 20px;
+    border: 2px solid #5c5795;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: #f5aa06;
+    outline: none;
+}
+
+/* Button styles */
+button[type="submit"], button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s ease; /* Smooth transition for all properties */
+    outline: none;
+    color: rgb(8, 8, 2);
+    background: linear-gradient(90deg, #f5a80e, #32a5f2); /* Gradient background */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    position: relative;
+    overflow: hidden;
+    display: block; /* Makes the button act like a block element */
+    margin: 20px auto; /* Centers the button horizontally */
+    align-self: center; 
+    text-align: center; /* Ensures the button text stays centered */
+}
+
+button:hover {
+    
+    background: linear-gradient(90deg, #2980b9, #f01313); /* Reverse gradient on hover */
+    transform: scale(1.05); /* Scale the button slightly */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: scale(0.98); /* Slightly shrink on click */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); /* Reduce shadow on click */
+}
+button::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: transform 0.6s ease;
+    z-index: 0;
+}
+button:hover::before{
+    transform: translate(-50%, -50%) scale(1);
+}
+button span{
+    position: relative;
+    z-index: 1;
+}
+
+#confirmation h3 {
+    font-size: 28px;
+    color: #27ae60;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Style for the User ID */
+#userId {
+    font-weight: bold;
+    font-size: 20px;
+    color: #e74c3c;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+}

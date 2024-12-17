@@ -1,0 +1,170 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Styling the Header */
+/* Styling the Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    position: relative;
+    height: 50px;
+}
+header h1{
+    flex: 1;
+    text-align: center;
+}
+/* Hamburger Icon Styling */
+.drawer-toggle {
+    cursor: pointer;
+    font-size: 30px;
+    color: white;
+}
+
+/* Drawer Menu Styling */
+.drawer {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+}
+
+.drawer a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.drawer a:hover {
+    background-color: #575757;
+}
+
+/* Back Arrow Styling in the Drawer */
+.back-arrow {
+    padding: 10px 15px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Drawer open state */
+.drawer.open {
+    width: 250px;
+}
+
+/* Other styling for the main container */
+.container {
+    padding: 20px;
+}
+
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-panel {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-candidate, .results {
+    width: 48%;
+}
+
+.add-candidate h2, .results h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background-color: #2c3e50;
+    color: white;
+}
+
+canvas {
+    margin-top: 20px;
+}
+/* Delete Button Styling */
+.delete-btn {
+    cursor: pointer;
+    color: red;
+    font-size: 18px;
+}
+
+.delete-btn:hover {
+    color: darkred;
+}

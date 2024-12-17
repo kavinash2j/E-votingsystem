@@ -1,0 +1,437 @@
+/* Navbar styles */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    
+}
+
+nav ul li {
+    float: left;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #111;
+}
+
+/* Container styles */
+.container {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 1000px;
+    border-radius: 10px;
+}
+.container2 {
+    border: 2px solid black;
+    display: flex;               /* Use flexbox for side-by-side layout */
+    text-align: center; /* Ensures the button text stays centered */
+    justify-content: space-between;  /* Space between the voter and admin sections */
+    align-items: stretch;      /* Align items to the start */
+    text-align: left;             /* Left-align text inside the sections */
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 1000px;
+    border-radius: 20px;
+    background-color: #f4f7fa;   /* Slight background color for better visual separation */
+}
+/* Headline styles */
+.animated-headline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: #02070b;
+    text-align: center;
+    margin-top: 50px;
+    /*opacity: 0; /* Start with the headline invisible */
+    /* animation: fadeInUp 2s ease forwards; */
+     /* Trigger the fade-in and slide-up animation */
+     animation: glow 1.5s ease-in-out infinite alternate;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: float 1.5s ease-in-out infinite alternate;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Adding a bottom border that animates */
+.animated-headline::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 4px;
+    background-color: #03080b;
+    bottom: 0;
+    left: 0;
+    transition: width 1s ease; /* Animate the underline */
+}
+
+/* On hover, the bottom border grows */
+.animated-headline:hover::after {
+    width: 100%; /* Full underline on hover */
+    color: #ffa513;  /* Changes color on hover */
+    transform: scale(1.1);  /* Slightly enlarges on hover */
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Keyframe for fade-in and slide-up animation */
+/* @keyframes glow {
+    from {
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5), 0 0 20px #3498db, 0 0 30px #3498db;
+    }
+    to {
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5), 0 0 20px #f39c12, 0 0 30px #f39c12;
+    }
+} */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+/* @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); 
+    }
+    
+} */
+
+
+
+/* Interface section styles */
+.interface {
+    
+    flex: 1; /* Ensures both interfaces take equal width */
+    display: flex;
+    flex-direction: column;      /* Arrange content in column (top to bottom) */
+    justify-content: space-between; /* Space content evenly, keeping button at the bottom */
+    padding: 20px;
+    margin: 20px;
+    /* border: 2px solid black;
+    border-radius: 20px; */
+    background-color: #dfecf0;
+    min-height: 500px;
+    
+}
+/* Voter Interface styles */
+.voter-interface {
+    border: 2px solid #1e0906; /* Blue border for Voter interface */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Optional shadow */
+}
+
+/* Admin Interface styles */
+.admin-interface {
+    border: 2px solid #1e0906; /* Red border for Admin interface */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Optional shadow */
+}
+
+.interface h3 {
+    color: #2c3e50;
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;  /* Large size for emphasis */
+    color: #135a3a;   /* Vibrant blue color */
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: glow 1.5s ease-in-out infinite alternate;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.interface h3:hover {
+    color: #f31212;  /* Changes color on hover */
+    transform: scale(1.1);  /* Slightly enlarges on hover */
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+}
+@keyframes glow {
+    from {
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5), 0 0 20px #3498db, 0 0 30px #3498db;
+    }
+    to {
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5), 0 0 20px #f39c12, 0 0 30px #f39c12;
+    }
+}
+
+/* Optional floating animation for more dynamic feel */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+.interface-image {
+    width: 200px;
+    height: auto;
+    margin: 20px auto; /* Auto margin will center the image */
+    border-radius: 10px;
+    border: 2px solid black; /* Adjusted border size for better visibility */
+    display: block; /* Ensures image is treated as a block element */
+}
+
+
+.interface p {
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'Open Sans', sans-serif; /* Clean and readable for paragraphs, inputs, and buttons */
+    font-size: 16px;
+    line-height: 1.6;
+    color: #20021b;
+    
+}
+
+/* Button styles */
+.btn-large {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s ease; /* Smooth transition for all properties */
+    outline: none;
+    color: rgb(8, 8, 2);
+    background: linear-gradient(90deg, #f5a80e, #32a5f2); /* Gradient background */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    position: relative;
+    overflow: hidden;
+    display: block; /* Makes the button act like a block element */
+    margin: 20px auto; /* Centers the button horizontally */
+    align-self: center; 
+    text-align: center; /* Ensures the button text stays centered */
+}
+
+
+.btn-large:hover {
+    background: linear-gradient(90deg, #2980b9, #f01313); /* Reverse gradient on hover */
+    transform: scale(1.05); /* Scale the button slightly */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+.btn-large:active {
+    transform: scale(0.98); /* Slightly shrink on click */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); /* Reduce shadow on click */
+}
+.btn-large::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: transform 0.6s ease;
+    z-index: 0;
+}
+.btn-large:hover::before{
+    transform: translate(-50%, -50%) scale(1);
+}
+.btn-large span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Styling the page header */
+h1 {
+    color: #333;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+/* Interface container for even spacing */
+.interface {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+/* Styling the buttons */
+button {
+    margin: 10px;
+
+}
+/* ------------------------------------ */
+
+footer {
+    background-color: #222;
+    color: #fff;
+    padding: 50px 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 10%;
+    margin-bottom: 20px;
+}
+
+.footer-section {
+    width: 23%;
+    margin-bottom: 20px;
+}
+
+.footer-section h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #00aaff;
+}
+
+.footer-section p, .footer-section ul {
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li a {
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #00aaff;
+}
+
+.footer-section .social-icons {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section .social-icons li {
+    margin-right: 15px;
+}
+
+.footer-section .social-icons li a {
+    color: #aaa;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.footer-section .social-icons li a:hover {
+    color: #00aaff;
+}
+
+.footer-section .subscribe form {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-section .subscribe input[type="email"] {
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    outline: none;
+}
+
+.footer-section .subscribe button {
+    padding: 10px;
+    background-color: #00aaff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.footer-section .subscribe button:hover {
+    background-color: #0077cc;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #333;
+    font-size: 14px;
+}
+
+.footer-bottom p {
+    margin: 0;
+    animation: slide-up 1s ease-in-out;
+}
+
+/* Animation for the footer text */
+@keyframes slide-up {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Hover effect for footer links */
+.footer-section ul li a:hover, .footer-bottom p:hover {
+    color: #00aaff;
+    text-decoration: underline;
+}
+
+/* Footer responsiveness */
+@media (max-width: 768px) {
+    .footer-section {
+        width: 45%;
+        margin-bottom: 40px;
+    }
+
+    .footer-bottom {
+        padding: 10px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-section {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+}

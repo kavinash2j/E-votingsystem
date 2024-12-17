@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - eVote</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="logo.jpg" alt="eVote Logo" class="logo">
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html">My Profile</a></li>
+                <li><a href="vote.html">Vote</a></li>
+                <li><a href="login.html">Logout</a></li>
+                
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <h1>User Profile</h1>
+
+            <div class="profile-section">
+                <div class="profile-card">
+                    <img src="profile1.jpg" alt="Profile picture" class="profile-pic" onerror="this.src='profile.jpg';">
+                    <h2 id="user-name">John Doe</h2>
+                    <p id="user-email">john.doe@example.com</p>
+                </div>
+
+                <div class="profile-details">
+                    <h3>Personal Information</h3>
+                    <p><strong>Full Name:</strong> <span id="full-name-display">John Doe</span></p>
+                    <p><strong>Email:</strong> <span id="email-display">john.doe@example.com</span></p>
+                    <p><strong>Date of Birth:</strong> <span id="dob-display">January 15, 1990</span></p>
+                    <p><strong>Phone Number:</strong> <span id="phone-display">+1 234 567 8901</span></p>
+                    <p><strong>Address:</strong> <span id="address-display">123 Main St, Springfield, IL</span></p>
+
+                    <h3>Voting History</h3>
+                    <ul>
+                        <li>Presidential Election 2020: Voted for Candidate X</li>
+                        <li>Local Council Election 2021: Voted for Candidate Y</li>
+                        <li>Vice Presidential Election 2022: Voted for Candidate Z</li>
+                    </ul>
+
+                    <button class="edit-profile-btn" onclick="showEditForm()">Edit Profile</button>
+
+                    <!-- Edit Profile Form -->
+                    <div class="edit-form" id="edit-form">
+                        <h3>Edit Profile</h3>
+
+                        <label for="edit-full-name">Full Name:</label>
+                        <input type="text" id="edit-full-name" value="John Doe">
+
+                        <label for="edit-email">Email:</label>
+                        <input type="email" id="edit-email" value="john.doe@example.com">
+
+                        <label for="edit-dob">Date of Birth:</label>
+                        <input type="text" id="edit-dob" value="January 15, 1990">
+
+                        <label for="edit-phone">Phone Number:</label>
+                        <input type="text" id="edit-phone" value="+1 234 567 8901">
+
+                        <label for="edit-address">Address:</label>
+                        <input type="text" id="edit-address" value="123 Main St, Springfield, IL">
+
+                        <button onclick="saveProfile()">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="profile.js">
+            
+        </script>
+    </div>
+</body>
+</html>

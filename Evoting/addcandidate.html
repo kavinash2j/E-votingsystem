@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            display: flex; /* Use flexbox for layout */
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            width: 250px; /* Fixed width for sidebar */
+            height: 100vh; /* Full height */
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1; /* Take remaining space */
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Button Styles */
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 10px; /* Space between buttons */
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        /* Plus Button */
+        .plus-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px; /* Space from the form */
+        }
+
+        .plus-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Form Styles */
+        #addCandidateForm {
+            display: none; /* Initially hidden */
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Candidate List Styles */
+        .candidate-list {
+            border: 1px solid #ccc;
+            padding: 15px;
+            width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            position: relative;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Candidate List Item Styles */
+        .candidate-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .candidate-list li {
+            margin: 5px 0;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            display: flex;
+            justify-content: space-between; /* Align items */
+            align-items: center; /* Center items vertically */
+        }
+
+        .candidate-list li:hover {
+            background-color: #d6d8db;
+        }
+
+        .delete-button {
+            color: red;
+            cursor: pointer;
+            margin-left: 10px; /* Add space from candidate name */
+        }
+
+        .delete-button:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar Section -->
+    <div class="sidebar">
+        <h2>Admin Menu</h2>
+        <a href="#" id="candidatePage">Add Candidate</a>
+        <a href="admin.html" id="resultsPage">Display Results</a>
+    
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="main-content">
+        <header>
+            <h1>Admin Dashboard</h1>
+        </header>
+
+        <div class="admin-panel">
+            <button class="plus-button" id="addCandidateButton">+</button>
+
+            <!-- Add Candidate Form -->
+            <form id="addCandidateForm">
+                <input type="text" id="candidateName" placeholder="Candidate Name" required>
+                <input type="text" id="partyName" placeholder="Party Name" required>
+                <input type="file" id="candidateLogo" accept="image/*" required>
+                <div>
+                    <button type="submit">Submit</button>
+                    <button type="button" id="closeFormButton">Close</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Candidate List Section -->
+        <div class="candidate-list">
+            <h3>Candidate List</h3>
+            <ul id="candidateList">
+                <!-- Candidate list will be populated here -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Function to add a candidate
+        function addCandidate(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const candidateName = document.querySelector('#candidateName').value;
+            const partyName = document.querySelector('#partyName').value;
+            const candidateLogoInput = document.querySelector('#candidateLogo');
+
+            // Read the uploaded file
+            const file = candidateLogoInput.files[0];
+            const reader = new FileReader();
+
+            reader.onloadend = function () {
+                // Retrieve candidates from localStorage
+                const candidates = JSON.parse(localStorage.getItem('candidates')) || [];
+
+                // Add new candidate
+                candidates.push({ logo: reader.result, name: candidateName, party: partyName });
+
+                // Save updated candidates to localStorage
+                localStorage.setItem('candidates', JSON.stringify(candidates));
+
+                // Clear input fields
+                document.querySelector('#candidateName').value = '';
+                document.querySelector('#partyName').value = '';
+                candidateLogoInput.value = '';
+
+                // Update candidate list display
+                displayCandidates();
+            };
+
+            if (file) {
+                reader.readAsDataURL(file); // Convert file to base64 URL
+            }
+        }
+
+        // Function to display candidates in the list
+        function displayCandidates() {
+            const candidateList = document.querySelector('#candidateList');
+
+            // Retrieve candidates from localStorage
+            const candidates = JSON.parse(localStorage.getItem('candidates')) || [];
+
+            // Clear previous list
+            candidateList.innerHTML = '';
+
+            // Add each candidate to the list
+            candidates.forEach(({ logo, name, party }, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${name} (${party})`;
+
+                // Create image element for logo
+                const img = document.createElement('img');
+                img.src = logo;
+                img.alt = `${name}'s Logo`;
+                img.style.width = '20px'; // Set logo size
+                img.style.marginRight = '10px'; // Add margin for spacing
+                listItem.prepend(img); // Add logo to the list item
+
+                // Create delete button
+                const deleteButton = document.createElement('span');
+                deleteButton.textContent = '✖'; // Cross sign
+                deleteButton.classList.add('delete-button');
+                deleteButton.onclick = function () {
+                    deleteCandidate(index); // Delete candidate on click
+                };
+
+                listItem.appendChild(deleteButton); // Add delete button to the list item
+                candidateList.appendChild(listItem);
+            });
+        }
+
+        // Function to delete a candidate
+        function deleteCandidate(index) {
+            const candidates = JSON.parse(localStorage.getItem('candidates')) || [];
+            candidates.splice(index, 1); // Remove candidate from the array
+            localStorage.setItem('candidates', JSON.stringify(candidates)); // Update localStorage
+            displayCandidates(); // Refresh the candidate list
+        }
+
+        // Show/hide the form when the button is clicked
+        document.querySelector('#addCandidateButton').addEventListener('click', function () {
+            const form = document.querySelector('#addCandidateForm');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none'; // Toggle form display
+        });
+
+        // Close the form
+        document.querySelector('#closeFormButton').addEventListener('click', function () {
+            document.querySelector('#addCandidateForm').style.display = 'none'; // Hide form
+        });
+
+        // Event listener for form submission
+        document.querySelector('#addCandidateForm').addEventListener('submit', addCandidate);
+
+        // Display candidates on page load
+        displayCandidates();
+    </script>
+</body>
+
+</html>

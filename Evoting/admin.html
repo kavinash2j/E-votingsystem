@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            flex: 1;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Voting Results Section */
+        .results {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Button Styles */
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 10px; /* Space between buttons */
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+        
+
+    </style>
+</head>
+
+<body>
+    
+    <!-- Sidebar Section -->
+    <div class="sidebar">
+        <h2>Admin Menu</h2>
+        <a href="addcandidate.html" id="addCandidateButton">Add Candidate</a>
+        <a href="#" id="displayResultsButton">Display Results</a>
+        <a href="index.html">Home</a> <!-- Home Button -->
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="main-content">
+        <header>
+            <h1>Admin Dashboard</h1>
+        </header>
+
+        <!-- Voting Results Section -->
+        <section class="results">
+            <h2>Voting Results</h2>
+            <table id="resultsTable">
+                <thead>
+                    <tr>
+                        <th>Candidate</th>
+                        <th>Votes</th>
+                    </tr>
+                </thead>
+                <tbody>vote
+                    <!-- Results will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script>
+        // Function to display the vote results
+        function displayResults() {
+            const resultsTableBody = document.querySelector('#resultsTable tbody');
+
+            // Retrieve votes from localStorage
+            const votes = JSON.parse(localStorage.getItem('votes')) || {};
+
+            // Clear previous rows
+            resultsTableBody.innerHTML = '';
+
+            // Insert a row for each candidate
+            for (const candidate in votes) {
+                const row = document.createElement('tr');
+
+                const candidateCell = document.createElement('td');
+                candidateCell.textContent = candidate;
+
+                const votesCell = document.createElement('td');
+                votesCell.textContent = votes[candidate];
+
+                row.appendChild(candidateCell);
+                row.appendChild(votesCell);
+
+                resultsTableBody.appendChild(row);
+            }
+        }
+
+        // Call displayResults when the page loads
+        document.addEventListener('DOMContentLoaded', displayResults);
+    </script>
+</body>
+
+</html>

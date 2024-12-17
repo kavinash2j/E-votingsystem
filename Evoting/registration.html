@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="registration.css">
+    <title>Voter Registration</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Voter Registration</h2>
+        <form id="registrationForm">
+            <input type="text" id="aadhar" placeholder="Aadhar Card Number" required>
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="number" id="age" placeholder="Age" required>
+            <select id="state" required>
+                <option value="">Select State</option>
+                <!-- List of states as before -->
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Gujarat">Gujarat</option>
+                <!-- Add more states as needed -->
+            </select>
+            <button type="submit">Register</button>
+        </form>
+
+        <div id="confirmation" style="display:none;">
+            <h3>Registration Successful!!</h3>
+            <p>Your User ID: <span id="userId"></span></p>
+            <p>Please remember this ID for Voting.</p>
+            <button onclick="window.location.href='login.html'">Get Started</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const userId = 'USER-' + Math.floor(Math.random() * 1000000);
+            const name = document.getElementById('name').value;
+            const aadhar = document.getElementById('aadhar').value;
+
+            // Create an object to store all the credentials
+            const voterData = {
+                userId: userId,
+                name: name,
+                aadhar: aadhar,
+                hasVoted: false  // Flag to track if the voter has voted
+            };
+
+            // Store voter data in localStorage
+            localStorage.setItem('voterData', JSON.stringify(voterData));
+
+            document.getElementById('userId').textContent = userId;
+            document.getElementById('registrationForm').style.display = 'none';
+            document.getElementById('confirmation').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
